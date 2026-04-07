@@ -1,86 +1,27 @@
-<p align="center">
-  <a href="https://www.kestra.io">
-    <img src="https://kestra.io/banner.png"  alt="Kestra workflow orchestrator" />
-  </a>
-</p>
+### NPM Dependency Analyzer Plugin
 
-<h1 align="center" style="border-bottom: none">
-    Event-Driven Declarative Orchestrator
-</h1>
+A simple Kestra plugin to check outdated npm dependencies and run security audits directly inside workflows.
 
-<div align="center">
- <a href="https://github.com/kestra-io/kestra/releases"><img src="https://img.shields.io/github/tag-pre/kestra-io/kestra.svg?color=blueviolet" alt="Last Version" /></a>
-  <a href="https://github.com/kestra-io/kestra/blob/develop/LICENSE"><img src="https://img.shields.io/github/license/kestra-io/kestra?color=blueviolet" alt="License" /></a>
-  <a href="https://github.com/kestra-io/kestra/stargazers"><img src="https://img.shields.io/github/stars/kestra-io/kestra?color=blueviolet&logo=github" alt="Github star" /></a> <br>
-<a href="https://kestra.io"><img src="https://img.shields.io/badge/Website-kestra.io-192A4E?color=blueviolet" alt="Kestra infinitely scalable orchestration and scheduling platform"></a>
-<a href="https://kestra.io/slack"><img src="https://img.shields.io/badge/Slack-Join%20Community-blueviolet?logo=slack" alt="Slack"></a>
-</div>
+It wraps common npm commands like:
 
-<br />
-
-<p align="center">
-  <a href="https://twitter.com/kestra_io" style="margin: 0 10px;">
-        <img src="https://kestra.io/twitter.svg" alt="twitter" width="35" height="25" /></a>
-  <a href="https://www.linkedin.com/company/kestra/" style="margin: 0 10px;">
-        <img src="https://kestra.io/linkedin.svg" alt="linkedin" width="35" height="25" /></a>
-  <a href="https://www.youtube.com/@kestra-io" style="margin: 0 10px;">
-        <img src="https://kestra.io/youtube.svg" alt="youtube" width="35" height="25" /></a>
-</p>
-
-<br />
-<p align="center">
-    <a href="https://go.kestra.io/video/product-overview" target="_blank">
-        <img src="https://kestra.io/startvideo.png" alt="Get started in 3 minutes with Kestra" width="640px" />
-    </a>
-</p>
-<p align="center" style="color:grey;"><i>Get started with Kestra in 3 minutes.</i></p>
-
-
-# Kestra Plugin Template
-
-> A template for creating Kestra plugins
-
-This repository serves as a general template for creating a new [Kestra](https://github.com/kestra-io/kestra) plugin. It should take only a few minutes! Use this repository as a scaffold to ensure that you've set up the plugin correctly, including unit tests and CI/CD workflows.
-
-![Kestra orchestrator](https://kestra.io/video.gif)
-
-## Running the project in local
-### Prerequisites
-- Java 21
-- Docker
-
-### Running tests
-```
-./gradlew check --parallel
+```bash
+npm outdated            // table view    
+npm outdated --json     // raw data or json view  
+npm audit --json
 ```
 
-### Development
+and lets you choose between raw (table) or JSON output.
 
-`VSCode`:
+### Usage
 
-Follow the README.md within the `.devcontainer` folder for a quick and easy way to get up and running with developing plugins if you are using VSCode.
-
-`Other IDEs`:
-
-```
-./gradlew shadowJar && docker build -t kestra-custom . && docker run --rm -p 8080:8080 kestra-custom server local
-```
-> [!NOTE]
-> You need to relaunch this whole command everytime you make a change to your plugin
-
-go to http://localhost:8080, your plugin will be available to use
-
-## Documentation
-* Full documentation can be found under: [kestra.io/docs](https://kestra.io/docs)
-* Documentation for developing a plugin is included in the [Plugin Developer Guide](https://kestra.io/docs/plugin-developer-guide/)
+tasks:
+  - id: check-deps
+    type: io.kestra.plugin.npm.NpmOutdated
+    path: "/your/project"
 
 
-## License
-Apache 2.0 © [Kestra Technologies](https://kestra.io)
+**Demo :**
 
+<img width="1360" height="626" alt="Screenshot from 2026-04-07 23-09-49" src="https://github.com/user-attachments/assets/6b1b1d41-dcf5-41e8-98db-cc650231c209" />
 
-## Stay up to date
-
-We release new versions every month. Give the [main repository](https://github.com/kestra-io/kestra) a star to stay up to date with the latest releases and get notified about future updates.
-
-![Star the repo](https://kestra.io/star.gif)
+https://github.com/user-attachments/assets/011f759d-f4c4-4cad-9cc2-4b5f3cbd8099
