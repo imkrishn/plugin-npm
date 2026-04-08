@@ -14,10 +14,12 @@ and lets you choose between raw (table) or JSON output.
 
 ### Usage
 
+```bash
 tasks:
   - id: check-deps
     type: io.kestra.plugin.npm.NpmOutdated
     path: "/your/project"
+```
 
 
 **Demo :**
